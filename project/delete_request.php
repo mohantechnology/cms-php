@@ -61,7 +61,7 @@ else if (isset($_POST['sub']) && isset($_POST['unit'])) {
     $unit = trim($_POST['unit']);
 
     $table_name = $sub . $unit;
-
+    $table_dropped = false;
 
     if (isset($_POST['cat']) && isset($_POST['delete']) && ($_POST['delete'] == "1") && isset($_POST['path_name'])) {
         // echo "<br>inside delte method"; 
@@ -86,6 +86,7 @@ else if (isset($_POST['sub']) && isset($_POST['unit'])) {
                 $conn->query($sql);
                 $sql = "DROP  table  $table_name";
                 $conn->query($sql);
+                $table_dropped = true;
                 
                 // echo "<br>deleting the topic name and table "; 
             }
@@ -98,6 +99,14 @@ else if (isset($_POST['sub']) && isset($_POST['unit'])) {
         ///continue
     }
 
+    // Skip further queries if table was dropped or does not exist
+    if (!$table_dropped) {
+        $check = $conn->query("SHOW TABLES LIKE '" . $conn->real_escape_string($table_name) . "'");
+        if ($check && $check->num_rows === 0) {
+            $table_dropped = true; // table missing, skip rest
+        }
+    }
+    if (!$table_dropped) {
     //notes box
     $sql = "SELECT * FroM $table_name where cat='note'";
     // echo "<br>$sql";
@@ -178,6 +187,8 @@ else if (isset($_POST['sub']) && isset($_POST['unit'])) {
         }
         echo '</ol>  </div>';
     }
+
+    } // end if (!$table_dropped)
 
     $conn->close();
 } 

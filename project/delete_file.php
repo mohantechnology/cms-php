@@ -5,7 +5,17 @@ if ((!isset($_SESSION["admin_ps"])) ||   $_SESSION["admin_ps"] != $user_password
     unset($_POST);
     unset($_FILES);
     unset($_SESSION["admin_ps"]);
-    return  header("Location: ./login.php");
+    header("Location: ./login.php");
+    exit;
+}
+// Redirect before any output to avoid "headers already sent" warning
+if ((!isset($_SESSION['admin_del'])) || $_SESSION['admin_del'] != "admin") {
+    header("Location: ./upload_file.php");
+    exit;
+}
+if (isset($_GET["back"]) && $_GET["back"] == "true") {
+    header("Location: select_file.php");
+    exit;
 }
     $str = '
     <!DOCTYPE html>
@@ -267,24 +277,7 @@ if ((!isset($_SESSION["admin_ps"])) ||   $_SESSION["admin_ps"] != $user_password
 
 
     <?php
-    //  echo "$str";
-    // echo "start ing sesion"; 
-    // echo '<pre>';
-    // print_r($_SESSION); 
-    // echo '</pre>';
-
-    if ((!isset($_SESSION['admin_del'])) ||  $_SESSION['admin_del'] != "admin") {
-
-        // echo "delete is set"; 
-        // header("Location: ./login.php");
-        header("Location: ./upload_file.php");
-    }
-
-    if (isset($_GET["back"]) && $_GET["back"] == "true") {
-        unset($_GET["back"]);
-
-        header("location: select_file.php");
-    }
+    // Redirects are now at top of file (before any output)
 
     function split_with_file_name($str, &$file_name)
     {
