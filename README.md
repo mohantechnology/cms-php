@@ -33,7 +33,7 @@ $__db_name = "php_db";
 
 <h1>DEMO</h1> <hr width="800" align="left">
 <ul>
-  <li><b>For Visitors</b><br><br>
+  <li><b>For Visitors</b><br>
     Visitors can see the heading of each subject. Each heading contains uploaded file links and clicking on the link will download the files. <br>
     <img src="https://github.com/user-attachments/assets/f4e017f8-0687-4fd0-93bd-bfa47d08a961" alt="" width="700px">
   </li>
