@@ -1,4 +1,3 @@
-![cms-upload_compressed](https://github.com/user-attachments/assets/4827342d-9180-407e-9995-b6bc1b73326b)
 
 <h2>Content Management System</h2>
 <p>Html, Css, Javascript, PHP, MySQL</p>
