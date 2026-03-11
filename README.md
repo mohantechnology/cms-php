@@ -6,9 +6,7 @@
 Phone Number: <b>1111122222</b> <br>
 Password: <b>1111122222</b>
 
-<a href="https://college-cms.myselfproject.org/ssipmt.php" target="_blank">
-  <img src="https://cdn.glitch.com/89f82df8-eb2c-4c0e-883d-494391c85865%2FScreenshot%20(2511).png?v=1607934281911" alt="Live Demo" width="200px">
-</a>
+ 
 
 <h1>Configuration</h1> <hr width="800" align="left">
 <ul>
